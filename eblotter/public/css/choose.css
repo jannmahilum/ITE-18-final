@@ -1,0 +1,51 @@
+
+
+  /* Heading Section */
+  .heading {
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+    color: #babfbf;
+    margin-bottom: 40px;
+  }
+  
+ 
+  
+/* Button Container */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  align-items: center;
+  }
+  
+  /* Button Styles */
+  .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    width: 500px;
+    
+    background-color: #93c2b0;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #3d8575;
+    transform: scale(1.05);
+  }
+  
+
+.role {
+  text-align: center;
+  color:#87cbb2;
+  font-size: 25px;
+  
+}
+
+  

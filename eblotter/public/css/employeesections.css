@@ -1,0 +1,82 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  padding: 0 15px; /* Add padding to keep content away from edges */
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #93c2b0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 5px; /* Increase padding for better spacing */
+  position: relative;
+}
+
+.section-heading {
+  position: absolute; /* Position the heading at the top of the container */
+  top: 0; /* Align to the top of the container */
+  left: 50%; /* Horizontally center */
+  transform: translateX(-50%); /* Center offset correction */
+  text-align: center;
+  margin-top: 10px; /* Add a small gap from the top if needed */
+}
+
+.section-heading p {
+  font-weight: bold;
+  font-size: 40px;
+  color: #5fe1c7;
+}
+
+.section-heading .highlight {
+  font-size: 40px;
+  font-weight: bold;
+  color: #babfbf;
+}
+
+.create-section-form form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.create-section-form label {
+  font-size: 14px;
+  color: #555;
+}
+
+.create-section-form input,
+.create-section-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.create-section-form input {
+  width: 250px; /* Fixed width for the text fields */
+}
+
+.create-section-form button {
+  background-color: #3d8575;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.create-section-form button:hover {
+  background-color: #2D6755;
+}

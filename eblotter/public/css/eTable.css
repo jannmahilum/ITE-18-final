@@ -1,0 +1,286 @@
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top */
+    height: 100%; /* Take full height */
+    min-height: 100vh; /* Ensure body takes full height of viewport */
+    font-family: 'Poppins', sans-serif;
+    background: url('bg/bg.jpg') no-repeat center center/cover;
+    background-attachment: fixed; /* Keeps the background fixed during scroll */
+    background-size: cover;
+    position: relative;
+    overflow: auto; /* Allow scrolling */
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Changed to fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Make sure it covers the entire page */
+    background: rgba(0, 0, 0, 0.4); /* Black overlay with transparency */
+    backdrop-filter: blur(5px); /* Apply blur to the background image */
+    z-index: 1; /* Place the overlay behind the content */
+}
+
+/* Globally hide scrollbars on the webpage */
+body, html {
+    overflow: hidden; /* Completely disables scrolling */
+}
+
+/* Hide scrollbar while keeping content scrollable */
+body, html {
+    overflow: auto; /* Ensure scrolling is enabled */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+/* Specific container example */
+.content {
+    overflow: auto; /* Enable scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+}
+
+.content::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+
+
+
+/* Content Container */
+.content {
+    position: relative;
+    top: 10px; /* Reduced top space */
+    z-index: 2; /* Content stays above the overlay */
+    padding: 10px; /* Reduced padding for tighter spacing */
+    text-align: left; /* Align content to the left */
+    width: 100%; /* Ensure the content takes full width */
+    overflow-x: auto; /* Allow horizontal scroll if necessary */
+}
+
+
+
+
+/* Table Styling */
+table {
+    background-color: white;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    font-size: 12px;
+    z-index: 1; /* Table should be behind other elements */
+    max-width: 100%; /* Prevent the table from overflowing */
+    margin-top: 5px; /* Reduced top margin for closer positioning */
+}
+
+/* Center and Fix the h2 */
+h2 {
+    position: sticky; /* Keeps it in place during scrolling */
+    top: 0; /* Sticks to the top of the viewport */
+    left: 0;
+    color: #babfbf;
+    font-size: 2rem; /* Set font size to be more responsive */
+    text-align: center;
+    z-index: 10; /* Ensures it's above the table */
+    width: 100%; /* Stretches across the width of the page */
+    padding: 10px 0; /* Adds some spacing */
+    margin: 0; /* Removes default margin */
+}
+
+/* Table, th, td */
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+}
+
+th, td {
+    word-wrap: break-word;
+    max-width: 100px;
+    overflow: hidden;
+}
+
+.header {
+    font-weight: bold;
+    text-align: center;
+}
+
+.empty-cell {
+    background-color: rgb(175, 214, 200);
+}
+
+.empty-cell1 {
+    background-color: rgb(197, 215, 191);
+}
+
+.empty-cell2 {
+    background-color: rgb(193, 252, 215);
+}
+
+
+/* Footer Section */
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #5fe1c7;
+    font-weight: bold;
+    margin-top: 20px; /* Reduced margin-top */
+    margin-bottom: 0;
+    padding: 15px 0; /* Reduced padding for a tighter footer */
+}
+
+/* Footer Link Styling */
+.footer a {
+    color: #5fe1c7;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Add Student Button and Reset Button */
+#addRowBtn, #reset-btn {
+    padding: 8px 18px; /* Reduced padding for smaller buttons */
+    background-color: #4eab96;
+    border: none;
+    color: white;
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px; /* Reduced spacing between buttons */
+    z-index: 10;
+    display: inline-block;
+}
+
+/* Search bar styling */
+#search-bar {
+    width: 180px; /* Reduced width for search bar */
+    padding: 8px;
+    font-size: 14px; /* Reduced font size */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 10;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+/* Add a container for the search bar and buttons */
+.container-search {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    margin-top: 5px; /* Reduced margin-top */
+    padding-left: 15px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+/* Align individual elements inside container to the left */
+#addRowBtn, #reset-btn, #search-bar {
+    margin-right: 10px; /* Reduced space between elements */
+}
+
+/* Back Button Styles */
+.back-btn {
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    border: none;
+    color: #4eab96;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s;
+    position: absolute;
+    padding: 20px;
+   margin-left: 20px;
+    left: 15px;
+    z-index: 3;
+}
+
+.back-btn:hover {
+    color: #3d8575;
+    transform: scale(1.1);
+}
+
+.back-btn i {
+    margin-right: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 20px; /* Make the header smaller on mobile */
+    }
+
+    #search-bar {
+        width: 150px; /* Reduced the search bar width */
+    }
+
+    /* Adjust table layout */
+    table {
+        font-size: 10px; /* Smaller font for mobile */
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    th, td {
+        padding: 3px; /* Less padding for smaller screens */
+        font-size: 10px; /* Smaller font size for cells */
+    }
+
+    /* Make footer font smaller on mobile */
+    .footer {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #search-bar {
+        width: 100%; /* Full width for mobile */
+    }
+
+    .container-search {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #reset-btn {
+        width: 100%; /* Reset button takes full width */
+        margin-top: 10px; /* Space between buttons */
+    }
+}
+
+
+
+/* Styling for Passed and Failed statuses */
+.passed {
+    color: green;
+    font-weight: bold;
+}
+
+.failed {
+    color: red;
+    font-weight: bold;
+}
