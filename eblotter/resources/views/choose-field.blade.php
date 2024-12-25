@@ -28,9 +28,9 @@
       </div>
       <!-- Buttons -->
       <div class="buttons-container">
-        <button class="btn" onclick="location.href='{{ url('/login') }}'">CWTS</button>
-        <button class="btn" onclick="location.href='{{ url('/login') }}'">ROTC</button>
-        <button class="btn" onclick="location.href='{{ url('/login') }}'">LTS</button>
+          <button class="btn" onclick="location.href='{{ url('/login?field=CWTS') }}'">CWTS</button>
+          <button class="btn" onclick="location.href='{{ url('/login?field=ROTC') }}'">ROTC</button>
+          <button class="btn" onclick="location.href='{{ url('/login?field=LTS') }}'">LTS</button>
       </div>
 
       <!-- Footer -->

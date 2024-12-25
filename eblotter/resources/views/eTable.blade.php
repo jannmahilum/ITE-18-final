@@ -29,8 +29,11 @@
     <input type="text" id="search-bar" placeholder="Search Student ID">
     
 </div>
-  
+<div class="scrollable-container">
   <table>
+
+
+
       <thead>
           <tr>
               <th  class="empty-cell1" colspan="10" class="header">First Semester</th>
@@ -158,18 +161,101 @@
       
       <tbody id="studentRows">
   
-          
-          <!-- Rows will be added dynamically here -->
+            <!-- Rows will be added dynamically here -->
+         
       </tbody>
   </table>
-  <!-- Add Student Button Below the Table -->
-<button id="addRowBtn" onclick="addStudentRow()">Add Student</button>
-  <script src="script.js"></script> 
-  
-  
- 
 
-    <!-- Footer -->
+</div>
+
+
+ 
+<button id="addRowBtn" onclick="addStudentRow()">Add Student</button>
+<script src="{{ asset('js/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+
+<script>
+const table = document.querySelector('table');
+
+table.addEventListener('input', function (event) {
+    const target = event.target;
+
+    if (target.tagName === 'TD' && target.contentEditable === "true") {
+        const studentId = target.closest('tr').getAttribute('data-student-id');
+        const column = target.id.split('Highest')[0]; // e.g., "att", "ww"
+        const score = target.innerText.trim();
+
+        if (score) {
+            saveStudentData(studentId, column, score);
+        }
+    }
+});
+
+function saveStudentData(studentId, column, score) {
+    axios.post('{{ route("employee.saveStudentGrade") }}', {
+        student_id: studentId,
+        column_name: column + '_highest', // e.g., "att_highest"
+        value: score,
+    }, {
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+    })
+    .then(response => {
+        if (response.data.success) {
+            console.log('Grade updated successfully!');
+        } else {
+            console.error(response.data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error saving grade:', error.response ? error.response.data : error);
+    });
+}
+
+function saveToLocalStorage() {
+    const studentRows = document.getElementById("studentRows");
+    const students = Array.from(studentRows.getElementsByTagName("tr")).map((row) => {
+        return {
+            studentId: row.id,
+            cells: Array.from(row.cells).map(cell => cell.textContent.trim())
+        };
+    });
+    localStorage.setItem("studentRecords", JSON.stringify(students));
+}
+
+function loadFromLocalStorage() {
+    const studentRows = document.getElementById("studentRows");
+    const records = JSON.parse(localStorage.getItem("studentRecords")) || [];
+    studentRows.innerHTML = ""; // Clear current rows
+
+    records.forEach(record => {
+        const row = document.createElement("tr");
+        row.id = record.studentId;
+
+        record.cells.forEach(cellText => {
+            const cell = document.createElement("td");
+            cell.contentEditable = "true";
+            cell.textContent = cellText;
+            cell.addEventListener("input", saveToLocalStorage); // Save changes
+            row.appendChild(cell);
+        });
+
+        studentRows.appendChild(row);
+    });
+}
+</script>
+
+
+
+
+</script>
+
+
+  
     <div class="footer">
         NSTP SERVICE RECORDS
     </div>

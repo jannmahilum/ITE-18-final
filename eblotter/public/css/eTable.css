@@ -1,34 +1,4 @@
-/* Import Poppins Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
-/* General Styles */
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align to the top */
-    height: 100%; /* Take full height */
-    min-height: 100vh; /* Ensure body takes full height of viewport */
-    font-family: 'Poppins', sans-serif;
-    background: url('bg/bg.jpg') no-repeat center center/cover;
-    background-attachment: fixed; /* Keeps the background fixed during scroll */
-    background-size: cover;
-    position: relative;
-    overflow: auto; /* Allow scrolling */
-}
-
-body::before {
-    content: '';
-    position: fixed; /* Changed to fixed */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Make sure it covers the entire page */
-    background: rgba(0, 0, 0, 0.4); /* Black overlay with transparency */
-    backdrop-filter: blur(5px); /* Apply blur to the background image */
-    z-index: 1; /* Place the overlay behind the content */
-}
 
 /* Globally hide scrollbars on the webpage */
 body, html {
@@ -61,20 +31,6 @@ html::-webkit-scrollbar {
 
 
 
-/* Content Container */
-.content {
-    position: relative;
-    top: 10px; /* Reduced top space */
-    z-index: 2; /* Content stays above the overlay */
-    padding: 10px; /* Reduced padding for tighter spacing */
-    text-align: left; /* Align content to the left */
-    width: 100%; /* Ensure the content takes full width */
-    overflow-x: auto; /* Allow horizontal scroll if necessary */
-}
-
-
-
-
 /* Table Styling */
 table {
     background-color: white;
@@ -85,6 +41,30 @@ table {
     z-index: 1; /* Table should be behind other elements */
     max-width: 100%; /* Prevent the table from overflowing */
     margin-top: 5px; /* Reduced top margin for closer positioning */
+    height: calc(100% - 50px); /* Make table cover button and content area */
+}
+
+
+thead {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    background-color: white; /* Adjust the background color as needed */
+    z-index: 1000; /* Make sure it stays above the content */
+    border-bottom: 2px solid #0a0808; /* Optional: adds a bottom border */
+}
+
+
+
+/* Content Container */
+.content {
+    position: relative;
+    top: 10px; /* Reduced top space */
+    z-index: 2; /* Content stays above the overlay */
+    padding: 10px; /* Reduced padding for tighter spacing */
+    text-align: left; /* Align content to the left */
+    width: 100%; /* Ensure the content takes full width */
+    overflow-x: auto; /* Allow horizontal scroll if necessary */
 }
 
 /* Center and Fix the h2 */
@@ -229,47 +209,104 @@ th, td {
     margin-right: 10px;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    h2 {
-        font-size: 20px; /* Make the header smaller on mobile */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Desktop Layout Adjustments */
+@media (min-width: 1024px) {
+    .content {
+        height: 100vh; /* Full viewport height */
+        display: flex;
+        flex-direction: column;
     }
 
-    #search-bar {
-        width: 150px; /* Reduced the search bar width */
+    .table-container {
+        flex: 1; /* Take full height available */
+        display: flex;
+        flex-direction: column;
+        overflow-x: auto; /* Horizontal scrolling if needed */
+        scrollbar-width: auto; /* For Firefox */
+        -ms-overflow-style: auto; /* For IE and Edge */
     }
 
-    /* Adjust table layout */
-    table {
-        font-size: 10px; /* Smaller font for mobile */
-        overflow-x: auto; /* Enable horizontal scrolling */
+    .table-container table {
+        width: 100%; /* Expand table to full width */
+        table-layout: auto; /* Maintain natural table layout */
+        border-collapse: collapse;
+        font-size: 14px; /* Adjust font size for better readability */
     }
 
     th, td {
-        padding: 3px; /* Less padding for smaller screens */
-        font-size: 10px; /* Smaller font size for cells */
+        padding: 8px; /* Adjust padding for readability */
+        font-size: 12px; /* Adjust font size for better readability */
     }
 
-    /* Make footer font smaller on mobile */
-    .footer {
-        font-size: 10px;
+    .header {
+        width: 100%; /* Stretches header to full width */
+        padding: 15px 0; /* Adjust padding for more spacing */
+        font-size: 20px; /* Adjust font size for header */
+    }
+
+    
+    #addRowBtn {
+        width: 100%; /* Cover the same width as the table on desktop */
+        padding: 8px 18px; /* Maintain original padding */
+        font-size: 14px; /* Keep the original font size */
+    }
+}
+
+@media (max-width: 768px) {
+    table {
+        font-size: 10px; /* Smaller font for tablet */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        max-width: 100%; /* Limit the width for tablet */
+        scrollbar-width: auto; /* Enable scrollbar for Firefox */
+        -ms-overflow-style: auto; /* Enable scrollbar for IE and Edge */
+    }
+
+    th, td {
+        padding: 2px; /* Less padding for smaller screens */
+        font-size: 10px; /* Smaller font size for cells */
     }
 }
 
 @media (max-width: 480px) {
-    #search-bar {
-        width: 100%; /* Full width for mobile */
+    table {
+        font-size: 10px; /* Font size adjustment for readability */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        max-width: 100%; /* Limit the width for mobile */
+        scrollbar-width: auto; /* Enable scrollbar for Firefox */
+        -ms-overflow-style: auto; /* Enable scrollbar for IE and Edge */
     }
 
-    .container-search {
-        flex-direction: column;
-        align-items: flex-start;
+    th, td {
+        padding: 2px; /* Less padding for smaller screens */
+        font-size: 8px; /* Smaller font size for cells */
     }
+}
 
-    #reset-btn {
-        width: 100%; /* Reset button takes full width */
-        margin-top: 10px; /* Space between buttons */
-    }
+.scrollable-container {
+    position: relative;
+    width: 100%; /* Take full width */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scrollbar-width: auto; /* For Firefox */
+    -ms-overflow-style: auto; /* For IE and Edge */
+}
+
+.scrollable-container table {
+    width: 100%; /* Ensure the table takes full width of the container */
+    table-layout: auto; /* Maintain natural table layout */
+    border-collapse: collapse;
+    font-size: 12px;
 }
 
 
